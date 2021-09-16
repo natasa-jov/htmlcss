@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Slatkoteka</title>
+    <link rel="icon" href="img/logo.png" type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="top-nav">
+        <div class="logo">
+            <img src="img/logo.png" style="width:100px;height:100px;">
+        </div>
+        <div class="menu">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="gallery.html">Nasi proizvodi</a></li>
+                    <li><a href="aboutUs.html">O nama</a></li>
+                    </ul>
+        </div>
+    </div>
+    <div class="headline">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <form id="form">
+            <div class="contactForm">
+                <div class="item">
+                    <h2>Registruj se!</h2>
+                    <input type="text" id="name" name="ime" required placeholder="Unesi nadimak...">
+                    <br>
+                    <label class="radio-inline">Genre: 
+                        <input type="radio" name="optradio" checked> Musko
+                        <input type="radio" name="optradio"> Zensko
+                    </label>
+                    <br>
+                    <input type="text" id="adress" name="adresa" required placeholder="Unesi e-mail ...">
+                    <br>
+                    <input type="password" id="password" name="password" required placeholder="Unesi password ...">
+                    <br>
+                    <input type="text" id="tel" name="tel" pattern="[0-9]+" required placeholder="Unesi broj telefona ...">
+                    <br>
+                    <button style="width: 100px;" class="button" type="submit">Registruj</button>
+                    <br>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="footer">
+        <p>&copy; Slatkoteka Serbia</p>
+    </div>
+</body>
+<script type="text/javascript">
+    $.validator.addMethod("regex",
+        function (value, element, regexp) {
+            var re = new RegExp(regexp);
+            return this.optional(element) || re.test(value);
+        }, "Molimo Vas unesite ispravan broj telefona!"
+    );
+    $('#form').validate({
+        rules: {
+            ime: {
+                required: true,
+                minlength: 3
+            },
+            adresa: {
+                required: true,
+                email: true
+            },
+            tel: {
+                required: true,
+                regex: "[0-9]" // As RegExp 		
+            },
+            password: {
+                required: true,
+                minlength: 8	
+            }
+        },
+        messages: {
+            ime: {
+                required: "Molimo Vas unesite korisnicko ime!",
+                minlength: "Korisnicko ime mora da ima bar 3 slova!"
+            },
+            adresa: {
+                required: "Molimo Vas unesite e-mail!",
+                email: "E-mail mora biti validan!"
+            },
+            tel: {
+                required: "Molimo Vas unesite broj telefona!",
+            },
+            password: {
+                required: "Molimo Vas unesite password!",
+                minlength: "Password mora da ima minimum 3 karaktera!"
+            }
+        }
+    });
+</script>
+
+</html>
